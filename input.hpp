@@ -56,8 +56,12 @@ unsigned char sysgetch() {
     }
 }
 
-unsigned char* sysgets(int& written, int index_start){
+unsigned char* sysgets(int& written){
     static unsigned char string[80];
+
+    for(int i = 0; i < 80; i++)
+        string[i] = 0;
+
     unsigned char* string_ptr = string;
     written = 0;
 
@@ -66,7 +70,6 @@ unsigned char* sysgets(int& written, int index_start){
         *string_ptr = c;
         written++;
         string_ptr++;
-        index_start++;
         c = sysgetch();
     }
 
